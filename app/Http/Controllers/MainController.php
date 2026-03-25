@@ -5,21 +5,48 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
-{ public function showIndex()
+{ public $array = [
+    ['id' => 1, 'title' => 'продукт 1', 'price' => '500', 'path' => '1111.jpg'],
+    ['id' => 2, 'title' => 'продукт 2', 'price' => '1500', 'path' => 'foto.jpg'],
+    ['id' => 3, 'title' => 'продукт 3', 'price' => '8000', 'path' => '1111.jpg'],
+    ['id' => 4, 'title' => 'продукт 4', 'price' => '5000', 'path' => 'foto.jpg'],
+    ['id' => 5, 'title' => 'продукт 5', 'price' => '1000', 'path' => '1111.jpg'],
+    ['id' => 6, 'title' => 'продукт 6', 'price' => '2000', 'path' => 'foto.jpg'],
+    ['id' => 7, 'title' => 'продукт 7', 'price' => '3000', 'path' => '1111.jpg'],
+    ['id' => 8, 'title' => 'продукт 8', 'price' => '4000', 'path' => 'foto.jpg'],
+    
+    ];
+    public function showIndex()
 {
     return view('home');
 }
 public function showArray()
     {
-       $array = [
-        ['id' => 1, 'title' => 'продукт 1', 'price' => '500', 'path' => '1111.jpg'],
-        ['id' => 2, 'title' => 'продукт 2', 'price' => '1500', 'path' => 'foto.jpg'],
-        ['id' => 3, 'title' => 'продукт 3', 'price' => '500', 'path' => '1111.jpg'],
-        ['id' => 4, 'title' => 'продукт 4', 'price' => '1500', 'path' => 'foto.jpg'],
-        
-        ];
+       $array= $this->array;
         
         return view('array', compact('array') );
+    }
+
+    public function shuffleArray()
+    {
+        $array = $this->array;
+        shuffle($array);
+        return view('array', compact('array'));
+    }
+    public function sortByPrice()
+    {
+        $array = $this->array;
+        usort($array, function ($a, $b) {
+            return $a['price'] <=> $b['price'];
+        });
+        return view('array', compact('array'));
+    }
+    public function filterByPrice()
+    {
+        $array = array_filter($this->array, function ($item) {
+            return $item['price'] > 1000;
+        });
+        return view('array', compact('array'));
     }
 }
 

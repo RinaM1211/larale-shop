@@ -16,6 +16,13 @@
             </ul>
         </nav>
         </header>
+
+        <div class="links">
+        <a href="{{ route('array.shuffle') }}">Перемешать массив</a>
+        <a href="{{ route('array.sort') }}">Сортировать массив (по цене)</a>
+        <a href="{{ route('array.filter') }}">Отфильтровать массив (цена > 1000)</a>
+    </div>
+    
     <div class="products-grid">
         @foreach ( $array as $item )
         <div class="product-card">

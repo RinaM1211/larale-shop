@@ -1,5 +1,5 @@
 body {
-    background-color: lavender;
+    background-color: rgb(235, 235, 250);
 }
 h1 {
     color: blue;
@@ -28,7 +28,6 @@ h1 {
     border-radius: 4px;
     margin-bottom: 10px;
 }
-
 
 @media (max-width: 768px) {
     .products-grid {
