@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\MockObject\Stub\ReturnReference;
 
@@ -10,7 +12,9 @@ class ProducrController extends Controller
 {
     public function index(){
         $products = Product::all();
-        return view('products.index', compact('products'));
+        $categories = Category::all();
+        $user = User::find(1)->get();
+        return view('products.index', compact('products','categories','user'));
     }
     public function create(){
         return view('products.creat');
